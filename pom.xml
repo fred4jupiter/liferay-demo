@@ -12,7 +12,7 @@
 
 	<properties>
 		<liferay.server.home>c:/noscan/liferay-portal-6.2-ce-ga2</liferay.server.home>
-		<liferay.version>6.2.0-RC5</liferay.version>
+		<liferay.version>6.2.1</liferay.version>
 		<jsf.project.stage>Development</jsf.project.stage>
 	</properties>
 
@@ -70,11 +70,11 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.5</version>
+				<version>3.1</version>
 				<configuration>
 					<encoding>UTF-8</encoding>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 			<plugin>
