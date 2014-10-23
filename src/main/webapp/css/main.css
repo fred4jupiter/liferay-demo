@@ -5,3 +5,9 @@
 .portlet-msg-info {
 	list-style-type: none;
 }
+
+.aui label {
+	display: inline !important;
+	font-weight: bold !important;
+	margin-right: 20px;
+}

@@ -3,8 +3,33 @@
 	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
 	<h:head />
 	<h:body>
-		<h:outputText value="#{i18n['liferay-demo-hello-world']}" />
-		<br />
-		<h:outputText value="#{viewBean.portletPref}" />
+		<h:form styleClass="form">
+			<fieldset>
+				<legend>#{i18n['label.view.bean']}</legend>
+				<div class="grid">
+					<div class="grid-33">
+						<div class="form-input">
+							<h:outputLabel for="bundle" value="#{i18n['label.text.msg.bundle']}" />
+							<h:outputText id="bundle" value="#{i18n['liferay-demo-hello-world']}" />
+						</div>
+						<div class="form-input">
+							<h:outputLabel for="portletPref" value="#{i18n['label.portletPref']}" />
+							<h:outputText id="portletPref" value="#{viewBean.portletPref}" />
+						</div>
+						<div class="form-input">
+							<h:outputLabel for="userField" value="#{i18n['label.custom.user.field']}" />
+							<h:outputText id="userField" value="#{viewBean.petName}" />
+						</div>
+					</div>
+				</div>
+				<div class="grid">
+					<div class="grid-100">
+						<div class="form-button-center">
+							<h:commandButton value="#{i18n['label.button.sendMail']}" action="#{viewBean.sendEmail}" />
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</h:form>
 	</h:body>
 </f:view>
