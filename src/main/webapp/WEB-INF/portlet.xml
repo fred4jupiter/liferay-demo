@@ -23,6 +23,9 @@
 			<portlet-mode>view</portlet-mode>
 			<portlet-mode>edit</portlet-mode>
 		</supports>
+		
+		<supported-locale>de</supported-locale>
+		<supported-locale>en</supported-locale>
 
 		<portlet-info>
 			<title>liferay-demo</title>

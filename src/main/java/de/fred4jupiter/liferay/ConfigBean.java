@@ -17,7 +17,7 @@ import com.liferay.faces.portal.context.LiferayFacesContext;
 @ManagedBean(name = "configBean")
 public class ConfigBean {
 
-	private static final String PORTLET_PREF_KEY = "portletPref";
+	public static final String PORTLET_PREF_KEY = "portletPref";
 
 	private String portletPref;
 	
