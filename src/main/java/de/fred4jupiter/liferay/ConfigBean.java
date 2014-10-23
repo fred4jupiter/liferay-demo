@@ -2,6 +2,7 @@ package de.fred4jupiter.liferay;
 
 import java.io.IOException;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.ExternalContext;
@@ -20,7 +21,7 @@ public class ConfigBean {
 	public static final String PORTLET_PREF_KEY = "portletPref";
 
 	private String portletPref;
-	
+
 	public ConfigBean() {
 		portletPref = readPortletPreference(PORTLET_PREF_KEY, "<not found>");
 	}
@@ -35,6 +36,7 @@ public class ConfigBean {
 		try {
 			portletPreferences.setValue(PORTLET_PREF_KEY, portletPref);
 			portletPreferences.store();
+			addInfoMessage("msg.saved.successfully");
 		} catch (ReadOnlyException e) {
 			throw new SavePortletPreferencesException(e.getMessage(), e);
 		} catch (ValidatorException e) {
@@ -42,6 +44,20 @@ public class ConfigBean {
 		} catch (IOException e) {
 			throw new SavePortletPreferencesException(e.getMessage(), e);
 		}
+	}
+
+	private void addInfoMessage(String key, Object... args) {
+		addMessage(FacesMessage.SEVERITY_INFO, key, args);
+	}
+
+	private void addMessage(FacesMessage.Severity severity, String key, Object... args) {
+		String message = getMessage(key, args);
+		FacesMessage facesMessage = new FacesMessage(severity, message, message);
+		FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+	}
+
+	private String getMessage(String key, Object... args) {
+		return LiferayFacesContext.getInstance().getMessage(key, args);
 	}
 
 	private PortletPreferences getPortletPreferences() {
