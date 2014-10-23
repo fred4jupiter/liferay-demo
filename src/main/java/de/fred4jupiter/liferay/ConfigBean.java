@@ -38,11 +38,11 @@ public class ConfigBean {
 			portletPreferences.store();
 			addInfoMessage("msg.saved.successfully");
 		} catch (ReadOnlyException e) {
-			throw new SavePortletPreferencesException(e.getMessage(), e);
+			throw new RuntimeException(e.getMessage(), e);
 		} catch (ValidatorException e) {
-			throw new SavePortletPreferencesException(e.getMessage(), e);
+			throw new RuntimeException(e.getMessage(), e);
 		} catch (IOException e) {
-			throw new SavePortletPreferencesException(e.getMessage(), e);
+			throw new RuntimeException(e.getMessage(), e);
 		}
 	}
 
