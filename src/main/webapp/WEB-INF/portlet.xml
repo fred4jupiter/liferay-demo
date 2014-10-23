@@ -11,15 +11,32 @@
 			<name>javax.portlet.faces.defaultViewId.view</name>
 			<value>/views/view.xhtml</value>
 		</init-param>
+		<init-param>
+			<name>javax.portlet.faces.defaultViewId.edit</name>
+			<value>/views/edit.xhtml</value>
+		</init-param>		
+		
 		<expiration-cache>0</expiration-cache>
+		
 		<supports>
 			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+			<portlet-mode>edit</portlet-mode>
 		</supports>
+
 		<portlet-info>
 			<title>liferay-demo</title>
 			<short-title>liferay-demo</short-title>
 			<keywords>liferay-demo</keywords>
 		</portlet-info>
+
+		<portlet-preferences>
+			<preference>
+				<name>portletPref</name>
+				<value>Hello from portlet preferences!</value>
+			</preference>
+		</portlet-preferences>
+
 		<security-role-ref>
 			<role-name>administrator</role-name>
 		</security-role-ref>

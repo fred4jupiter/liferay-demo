@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<f:view xmlns="http://www.w3.org/1999/xhtml" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:head />
+	<h:body>
+		<h:outputText value="#{i18n['label.edit.page']}" />
+		<h:form styleClass="form">
+			<fieldset>
+				<legend>#{i18n['title.preferences']}</legend>
+				<div class="grid">
+					<div class="grid-33">
+						<div class="form-input">
+							<h:outputLabel for="portletPref" value="#{i18n['label.senderEmailAddress']}" />
+							<h:inputText id="portletPref" value="#{configBean.portletPref}" />
+							<h:message for="portletPref" display="text" />
+						</div>
+					</div>
+				</div>
+				<div class="grid">
+					<div class="grid-100">
+						<div class="form-button-center">
+							<h:commandButton value="#{i18n['label.button.storePrefs']}" action="#{configBean.savePortletPreference}" />
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</h:form>
+	</h:body>
+</f:view>
