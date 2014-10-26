@@ -31,7 +31,7 @@ public class ConfigBean {
 		return preferences.getValue(key, defaultValue);
 	}
 
-	public void savePortletPreference() {
+	public String savePortletPreference() {
 		PortletPreferences portletPreferences = LiferayFacesContext.getInstance().getPortletPreferences();
 		try {
 			portletPreferences.setValue(PORTLET_PREF_KEY, portletPref);
@@ -44,6 +44,7 @@ public class ConfigBean {
 		} catch (IOException e) {
 			throw new RuntimeException(e.getMessage(), e);
 		}
+		return "edit";
 	}
 
 	private void addInfoMessage(String key, Object... args) {

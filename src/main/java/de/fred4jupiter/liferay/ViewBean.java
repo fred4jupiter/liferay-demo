@@ -16,11 +16,13 @@ import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.kernel.mail.MailMessage;
 import com.liferay.portal.model.User;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portlet.expando.model.ExpandoBridge;
 
 @RequestScoped
 @ManagedBean(name = "viewBean")
 public class ViewBean {
 
+	private static final String USER_ATTRIBUTE_PETNAME = "petname";
 	private static final Logger LOG = Logger.getLogger(ViewBean.class);
 
 	public String getPortletPref() {
@@ -34,9 +36,14 @@ public class ViewBean {
 
 		return portletRequest.getPreferences();
 	}
-	
+
 	public String getPetName() {
-		return (String) getCurrentLiferayUser().getExpandoBridge().getAttribute("petname");
+		ExpandoBridge expandoBridge = getCurrentLiferayUser().getExpandoBridge();
+		if (!expandoBridge.hasAttribute(USER_ATTRIBUTE_PETNAME)) {
+			LOG.error("You have to define a custom user attribute with key: " + USER_ATTRIBUTE_PETNAME);
+			return "key: " + USER_ATTRIBUTE_PETNAME + " undefined!!";
+		}
+		return (String) expandoBridge.getAttribute(USER_ATTRIBUTE_PETNAME);
 	}
 
 	/**
@@ -50,7 +57,7 @@ public class ViewBean {
 		return themeDisplay.getUser();
 	}
 
-	public void sendEmail() {
+	public String sendEmail() {
 		try {
 			InternetAddress from = new InternetAddress("dummy@demo.de");
 
@@ -65,6 +72,7 @@ public class ViewBean {
 		} catch (AddressException e) {
 			LOG.error(e.getMessage(), e);
 		}
+		return "view";
 	}
 
 }
