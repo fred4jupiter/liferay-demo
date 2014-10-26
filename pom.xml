@@ -13,7 +13,6 @@
 	<properties>
 		<liferay.server.home>c:/noscan/liferay-portal-6.2-ce-ga2</liferay.server.home>
 		<liferay.version>6.2.1</liferay.version>
-		<jsf.project.stage>Development</jsf.project.stage>
 	</properties>
 
 	<build>
