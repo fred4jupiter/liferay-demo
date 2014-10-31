@@ -11,6 +11,7 @@ import javax.portlet.PortletRequest;
 
 import org.apache.log4j.Logger;
 
+import com.liferay.faces.portal.context.LiferayFacesContext;
 import com.liferay.faces.util.portal.WebKeys;
 import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.kernel.mail.MailMessage;
@@ -22,8 +23,9 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 @ManagedBean(name = "viewBean")
 public class ViewBean {
 
-	private static final String USER_ATTRIBUTE_PETNAME = "petname";
 	private static final Logger LOG = Logger.getLogger(ViewBean.class);
+
+	private static final String USER_ATTRIBUTE_PETNAME = "petname";
 
 	public String getPortletPref() {
 		return getPortletPreferences().getValue(ConfigBean.PORTLET_PREF_KEY, "");
@@ -73,6 +75,10 @@ public class ViewBean {
 			LOG.error(e.getMessage(), e);
 		}
 		return "view";
+	}
+	
+	public String getPortletName() {
+		return LiferayFacesContext.getInstance().getPortletName();
 	}
 
 }
