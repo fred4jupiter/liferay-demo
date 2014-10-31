@@ -2,8 +2,6 @@ package de.fred4jupiter.liferay;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.portlet.PortletPreferences;
@@ -12,11 +10,9 @@ import javax.portlet.PortletRequest;
 import org.apache.log4j.Logger;
 
 import com.liferay.faces.portal.context.LiferayFacesContext;
-import com.liferay.faces.util.portal.WebKeys;
 import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.kernel.mail.MailMessage;
 import com.liferay.portal.model.User;
-import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.expando.model.ExpandoBridge;
 
 @RequestScoped
@@ -32,10 +28,7 @@ public class ViewBean {
 	}
 
 	private PortletPreferences getPortletPreferences() {
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		ExternalContext externalContext = facesContext.getExternalContext();
-		PortletRequest portletRequest = (PortletRequest) externalContext.getRequest();
-
+		PortletRequest portletRequest = LiferayFacesContext.getInstance().getPortletRequest();
 		return portletRequest.getPreferences();
 	}
 
@@ -54,9 +47,7 @@ public class ViewBean {
 	 * @return
 	 */
 	private User getCurrentLiferayUser() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		ThemeDisplay themeDisplay = (ThemeDisplay) context.getExternalContext().getRequestMap().get(WebKeys.THEME_DISPLAY);
-		return themeDisplay.getUser();
+		return LiferayFacesContext.getInstance().getUser();
 	}
 
 	public String sendEmail() {
@@ -76,7 +67,7 @@ public class ViewBean {
 		}
 		return "view";
 	}
-	
+
 	public String getPortletName() {
 		return LiferayFacesContext.getInstance().getPortletName();
 	}
